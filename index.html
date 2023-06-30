@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <h4>Age Calculator</h4>
+        <div class="form">
+            <label for="birthday">
+                Enter Your Date of Birth
+            </label>
+            <input type="date" name="birth" id="birth">
+            <button id="btn">Calculate Age</button>
+            <p id="res"></p>
+        </div>
+    </div>
+    
+<!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
+<!--                                                        STYLESHEET                                                     -->
+<!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Ubuntu;
+            background-color: whitesmoke;
+            display: grid;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background-color: #dc3545;
+        }
+
+        .container{
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            width: 500px;
+            max-width: 700px;
+            height: 280px;
+            margin: 0 auto;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+        }
+
+        h4{
+            font-size: 35px;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label{
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        input{
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 65%;
+            font-size: 20px;
+            max-width: 300px;
+            cursor: pointer;
+        }
+
+        button{
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+            height: 50px;
+            width: 85%;
+            font-size: 22px;
+        }
+
+
+        button:hover{
+            background-color: #0062cc;
+        }
+
+        #res{
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #link{
+            text-decoration: none;
+            color: #dc3545;
+        }
+        button .btn-dark{
+            width: 50px;
+        }
+        
+    </style>
+
+<!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
+<!--                                                     Javascript Code                                                   -->
+<!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
+    <script>
+        const btn = document.getElementById("btn")
+        const birth = document.getElementById("birth")
+        const res = document.getElementById("res");
+
+        
+        function calculate(){
+            const birthValue = birth.value;
+            // console.log(birthValue);
+            if(birthValue === ""){
+                alert("Please select date")
+            }else{
+                const ageIs = getAge(birthValue)
+                res.innerText = `Your Age is :- ${ageIs} ${ageIs > 1 ? "Years" : "Year"} old`
+            }
+        }
+
+        function getAge(birthValue){
+            const currentDate = new Date();
+            const birthdate = new Date(birthValue);
+            console.log(birthdate.getFullYear());
+            let ageIs = currentDate.getFullYear() - birthdate.getFullYear();
+            
+            let month = currentDate.getMonth() - birthdate.getMonth();
+            
+            if(month < 0 || (month === 0 && currentDate.getDate() < birthdate.getDate())){
+                ageIs--
+            }
+            return ageIs; 
+        }
+
+
+        btn.addEventListener("click", calculate)
+
+    </script>
+<!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
+<!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
+</body>
+</html>
